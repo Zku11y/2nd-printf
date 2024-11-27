@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_print_bonus.c                               :+:      :+:    :+:   */
+/*   ft_handle_print_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "ft_printf_bonus.h"
 
-int	handle_c(va_list args, const char **content)
+int	ft_handle_c(va_list args, const char **content)
 {
 	char	a;
 
@@ -22,14 +22,14 @@ int	handle_c(va_list args, const char **content)
 	return (1);
 }
 
-int	handle_perc(const char **content)
+int	ft_handle_perc(const char **content)
 {
 	write(1, &(**content), 1);
 	*(content) = *(content) + 1;
 	return (1);
 }
 
-int	handle_s(va_list args, const char **content)
+int	ft_handle_s(va_list args, const char **content)
 {
 	char	*str;
 	int		size;

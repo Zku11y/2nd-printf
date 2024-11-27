@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   ft_nbr_size_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: skully <skully@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 16:42:58 by mdakni            #+#    #+#             */
-/*   Updated: 2024/11/07 15:27:27 by mdakni           ###   ########.fr       */
+/*   Created: 2024/11/14 18:44:36 by mdakni            #+#    #+#             */
+/*   Updated: 2024/11/27 11:21:22 by skully           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf_bonus.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+int	ft_nbr_size(int a)
 {
-	t_list	*ptr;
+	int		size;
+	int		sign;
+	long	nbr;
 
-	if (!lst || !new)
-		return ;
-	if (!*lst)
+	size = 0;
+	sign = 0;
+	nbr = a;
+	if (nbr < 0)
 	{
-		*lst = new;
-		return ;
+		sign = 1;
+		nbr = nbr * -1;
 	}
-	ptr = ft_lstlast(*lst);
-	ptr->next = new;
+	while (nbr / 10 > 0)
+	{
+		nbr = nbr / 10;
+		size++;
+	}
+	return ((size + 1) + sign);
 }

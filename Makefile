@@ -1,15 +1,16 @@
-SRC = ft_printf/ft_printf.c libft_src/ft_strlen.c \
-	ft_printf/handle_print.c libft_src/ft_putnbr_fd.c ft_printf/nbr_size.c \
-	ft_printf/handle_hex.c ft_printf/putnbr.c libft_src/ft_strlcpy.c \
-	libft_src/ft_putstr_fd.c ft_printf/handle_dec.c \
-	libft_src/ft_strchr.c
+SRC = ft_printf/ft_printf.c ft_printf/ft_strlen.c \
+	ft_printf/ft_handle_print.c ft_printf/ft_putnbr_fd.c\
+	ft_printf/ft_nbr_size.c ft_printf/ft_handle_hex.c\
+	ft_printf/ft_putnbr.c ft_printf/ft_strlcpy.c \
+	ft_printf/ft_putstr_fd.c ft_printf/ft_handle_dec.c \
+	ft_printf/ft_strchr.c
 
-BSRC = ft_printf_bonus/ft_printf_bonus.c libft_src/ft_strlen.c \
-	ft_printf_bonus/handle_print_bonus.c libft_src/ft_putnbr_fd.c\
-	ft_printf_bonus/nbr_size_bonus.c ft_printf_bonus/handle_hex_bonus.c\
-	ft_printf_bonus/putnbr_bonus.c libft_src/ft_strlcpy.c \
-	libft_src/ft_putstr_fd.c ft_printf_bonus/handle_dec_bonus.c \
-	libft_src/ft_strchr.c
+BSRC = ft_printf_bonus/ft_printf_bonus.c ft_printf_bonus/ft_strlen.c \
+	ft_printf_bonus/ft_handle_print_bonus.c ft_printf_bonus/ft_putnbr_fd.c\
+	ft_printf_bonus/ft_nbr_size_bonus.c ft_printf_bonus/ft_handle_hex_bonus.c\
+	ft_printf_bonus/ft_putnbr_bonus.c ft_printf_bonus/ft_strlcpy.c \
+	ft_printf_bonus/ft_putstr_fd.c ft_printf_bonus/ft_handle_dec_bonus.c \
+	ft_printf_bonus/ft_strchr.c
 
 NAME = libftprintf.a
 HEADER = ft_printf/ft_printf.h
@@ -33,8 +34,17 @@ ft_printf_bonus/%.o: ft_printf_bonus/%.c $(BHEADER)
 bonus: $(BOBJS)
 	ar rcs $(NAME) $(BOBJS)
 
+m:
+	@cc -Wall -Wextra -Werror main.c libftprintf.a
+	@./a.out
+
+mn:
+	@cc main.c libftprintf.a
+	@./a.out
+
 clean:
-	rm -f */*.o
+	rm -f $(OBJS)
+	rm -f $(BOBJS)
 
 fclean: clean
 	rm -f $(NAME)

@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/25 23:14:58 by mdakni            #+#    #+#             */
-/*   Updated: 2024/10/25 23:15:03 by mdakni           ###   ########.fr       */
+/*   Created: 2024/11/14 18:44:40 by mdakni            #+#    #+#             */
+/*   Updated: 2024/11/26 12:27:49 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf_bonus.h"
 
-int	ft_isascii(int c)
+void	ft_putnbr(int n)
 {
-	return (c >= 0 && c <= 127);
+	char	chr;
+	long	nbr;
+
+	nbr = n;
+	if (nbr < 0)
+	{
+		write(1, "-", 1);
+		nbr = -nbr;
+	}
+	if (nbr >= 10)
+		ft_putnbr(nbr / 10);
+	chr = (nbr % 10) + '0';
+	write(1, &chr, 1);
 }

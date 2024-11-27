@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_dec_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_handle_dec_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: skully <skully@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:40:53 by mdakni            #+#    #+#             */
-/*   Updated: 2024/11/26 14:29:59 by mdakni           ###   ########.fr       */
+/*   Updated: 2024/11/27 11:10:08 by skully           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-int	nbr_u_size(unsigned int a)
+int	ft_nbr_u_size(unsigned int a)
 {
 	int	size;
 
@@ -25,7 +25,7 @@ int	nbr_u_size(unsigned int a)
 	return (size + 1);
 }
 
-void	putnbr_u(unsigned int n)
+void	ft_putnbr_u(unsigned int n)
 {
 	char	chr;
 	long	nbr;
@@ -37,49 +37,45 @@ void	putnbr_u(unsigned int n)
 		nbr = -nbr;
 	}
 	if (nbr >= 10)
-		putnbr_u(nbr / 10);
+		ft_putnbr_u(nbr / 10);
 	chr = (nbr % 10) + '0';
 	write(1, &chr, 1);
 }
 
-int	handle_u(va_list args, const char **content)
+int	ft_handle_u(va_list args, const char **content)
 {
 	unsigned int	a;
 
 	a = va_arg(args, unsigned int);
-	putnbr_u(a);
+	ft_putnbr_u(a);
 	*(content) = *(content) + 1;
-	return (nbr_u_size(a));
+	return (ft_nbr_u_size(a));
 }
 
-int handle_spcpls(va_list args, const char **content)
+int ft_handle_spcpls(va_list args, const char **content)
 {
-	int size;
-	int i;
 	int flag;
 	int nbr;
 
-	i = 0;
-	size = 0;
 	flag = 0;
 	nbr = va_arg(args, int);
 	while(**content == ' ')
 		*(content) = *(content) + 1;
 	if((*(*content - 1) == ' ') && (**content == 'd' || **content == 'i') && (nbr > 0))
-		return(write(1, " ", 1), handle_id(nbr, content) + 1);
+		return(write(1, " ", 1), ft_handle_id(nbr, content) + 1);
 	while(**content == '+' || **content == ' ')
 	{
 		*(content) = *(content) + 1;
 		flag = 1;
 	}
 	if((flag == 1) && (**content == 'd' || **content == 'i') && (nbr > 0))
-		return(write(1, "+", 1), handle_id(nbr, content) + 1);
-	return (handle_id(nbr, content));
+		return(write(1, "+", 1), ft_handle_id(nbr, content) + 1);
+	return (ft_handle_id(nbr, content));
 }
 
-int	handle_id(int nbr, const char **content)
+int	ft_handle_id(int nbr, const char **content)
 {
-	putnbr(nbr);
+	ft_putnbr(nbr);
 	*(content) = *(content) + 1;
-	return (nbr_size(nbr));
+	return (ft_nbr_size(nbr));
 }
